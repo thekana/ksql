@@ -222,6 +222,19 @@ of view, there are several arguments why we should map SQL `NULL` to JSON `null`
 * Akin to SQL's `NULL`, JSON's `null` is a marker of absent value, so semantics does not change.
 * Returning SQL `NULL` would make it impossible to serialize any input to JSON `null`.
 
+## Design
+
+Akin to the existing `EXTRACTJSONFIELD` and `JSON_ARRAY_CONTAINS`, the general workflow for all
+functions is to parse the given string(s) into jackson's `JsonNode`s and perform manipulations according
+to the functions' specifications.
+
+This approach might be suboptimal from the performance point of view since every function invocation
+completely deserializes the entire structure and then serializes the result back. However, I would argue
+that the best option for performance-sensitive JSON manipulation is the introduction of native JSON
+types that avoid the serde step altogether. In turn, string manipulation is easy to implement, and
+it enables the majority of common use cases.
+
+
 ## Test Plan
 
 Add unit tests, QTT tests for the new functions.

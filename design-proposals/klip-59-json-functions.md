@@ -168,7 +168,6 @@ Akin to PostgreSQL's `||` operator, this function merges only top-level object k
 
 ```
 json_concat("{\"a\": 1}", "{\"b\": 2}") // returns "{\"a\": 1, \"b\": 2}"
-json_concat("{\"a\": {\"3\": 4}}", "{\"a\": {\"5\": 6}}") // returns "{\"a\": {\"5\": 6}}"
 json_concat("{\"a\": {\"5\": 6}}", "{\"a\": {\"3\": 4}}") // returns "{\"a\": {\"3\": 4}}"
 json_concat("{}", "{}") // returns "{}"
 json_concat("[1, 2]", "[3, 4]") // returns "[1,2,3,4]"

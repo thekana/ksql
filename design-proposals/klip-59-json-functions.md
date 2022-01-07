@@ -187,9 +187,9 @@ json_concat(NULL, "[1]") // returns NULL
 If one argument represents a valid JSON and the other one does not, then return the valid string
 as a result of concatenation.
 
-Given that concatenation of invalid JSON strings is an exceptional situation, I believe that we
-should return `NULL` if any input is not a JSON. This way, we avoid ambiguity if a user needs to trace
-back how they got certain results.
+Given that concatenation of invalid JSON strings is an exceptional situation, we should return
+`NULL` if any input is not a JSON. This way, we avoid ambiguity if a user needs to trace back how
+they got certain results.
 
 If this function returns the valid record in the case when the other one is invalid, from the user
 perspective, there are 3 possibilities how they ended up with this result:
@@ -234,11 +234,10 @@ functions is to parse the given string(s) into jackson's `JsonNode`s and perform
 to the functions' specifications.
 
 This approach might be suboptimal from the performance point of view since every function invocation
-completely deserializes the entire structure and then serializes the result back. However, I would argue
-that the best option for performance-sensitive JSON manipulation is the introduction of native JSON
-types that avoid the serde step altogether. In turn, string manipulation is easy to implement, and
-it enables the majority of common use cases.
-
+completely deserializes the entire structure and then serializes the result back. However, the best
+option for performance-sensitive JSON manipulation is the introduction of native JSON types that
+avoids the serde step altogether. In turn, string manipulation is easy to implement, and it enables
+the majority of common use cases.
 
 ## Test Plan
 

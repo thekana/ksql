@@ -158,6 +158,7 @@ Given 2 strings, parse them as JSON values and return a string representing thei
 Concatenation rules are identical to PostgreSQL's [|| operator](https://www.postgresql.org/docs/14/functions-json.html):
 * If both strings deserialize into JSON objects, then return an object with a union of the input key,
   taking values from the second object in the case of duplicates.
+* If both strings deserialize into JSON lists, then return the result of array concatenation.
 * If at least one of the deserialized values is not an object, then convert non-array inputs to a
   single-element array and return the result of array concatenation.
 * If at least one of the input strings is `NULL` or can't be deserialized as JSON, then return `NULL`.

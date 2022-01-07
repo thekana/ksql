@@ -176,7 +176,6 @@ json_concat("[1, [2]]", "[[[3]], [[[4]]]]") // returns "[ 1, [2], [[3]], [[[4]]]
 json_concat("null", "null") // returns [null, null]
 json_concat("[1, 2]", "{\"a\": 1}") // returns "[1, 2, {\"a\": 1}]"
 json_concat("[1, 2]", "3") // returns "[1, 2, 3]"
-json_concat("[3]", "[1, 2]") // returns "[3, 1, 2]"
 json_concat("1", "2") // returns "[1, 2]"
 json_concat("[]", "[]") // returns []
 json_concat("abc", "[1]") // returns NULL

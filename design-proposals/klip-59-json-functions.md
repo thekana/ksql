@@ -42,7 +42,7 @@ string can also be nested within a map or struct.
 ### is_json
 
 ```
-is_json(json_string)
+is_json(json_string) -> Boolean
 ```
 
 Given a string, returns true if it can be parsed as a valid JSON value, false otherwise.
@@ -64,7 +64,7 @@ is_json(NULL) // returns false
 ### json_array_length
 
 ```
-json_array_length(json_string)
+json_array_length(json_string) -> Integer
 ```
 
 Given a string, parses it as a JSON value and returns the length of the top-level array. Returns
@@ -86,7 +86,7 @@ json_array_length(NULL) // returns NULL
 ### json_keys
 
 ```
-json_keys(json_string)
+json_keys(json_string) -> Array<String>
 ```
 
 Given a string, parses it as a JSON object and returns a ksqlDB array of strings representing the
@@ -108,7 +108,7 @@ json_keys(NULL) // returns NULL
 ### json_records
 
 ```
-json_records(json_string)
+json_records(json_string) -> Array<Struct<json_key:String, json_value:String>>
 ```
 
 Given a string, parses it as a JSON object and returns a ksqlDB array of structs containing 2 
@@ -151,7 +151,7 @@ json_records("{\"a\": \"abc\"}) // returns [["a", "abc"]]
 ### json_concat
 
 ```
-json_concat(json_string, json_string)
+json_concat(json_string, json_string) -> String
 ```
 
 Given 2 strings, parse them as JSON values and return a string representing their concatenation.
@@ -204,7 +204,7 @@ possibility which reduces cognitive load from the user.
 ### to_json_string
 
 ```
-to_json_string(val)
+to_json_string(val) -> String
 ```
 
 Given any ksqlDB type returns the equivalent JSON string.

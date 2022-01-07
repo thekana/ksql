@@ -111,14 +111,15 @@ json_keys(NULL) // returns NULL
 json_records(json_string)
 ```
 
-Given a string, parses it as a JSON object and returns a ksqlDB array of two-element arrays
-representing the top-level keys and values. Returns `NULL` if the string can't be interpreted as a
-JSON object, i.e. it is `NULL` or it does not contain valid JSON, or the JSON value is not an object.
+Given a string, parses it as a JSON object and returns a ksqlDB array of structs containing 2 
+strings - `json_key` and `json_value` representing the top-level keys and values. Returns `NULL` if 
+the string can't be interpreted as a JSON object, i.e. it is `NULL` or it does not contain valid 
+JSON, or the JSON value is not an object.
 
 #### Examples
 
 ```
-json_records("{\"a\": \"abc\", \"b\": { \"c\": \"a\" }, \"d\": 1}") // returns [["a", "\"abc\""], ["b", "{ \"c\": \"a\" }"], ["d", "1"]]
+json_records("{\"a\": \"abc\", \"b\": { \"c\": \"a\" }, \"d\": 1}") // returns [Struct{json_key="a", json_value="\"abc\""}, Struct{json_key="b", json_value="{ \"c\": \"a\" }}, Struct{json_key="d", json_value="1"}]
 json_records("{}") // returns []
 json_records("[]") // returns NULL
 json_records("") // returns NULL
@@ -129,7 +130,7 @@ json_records(NULL) // returns NULL
 
 #### Rejected alternatives
 
-Remove redundant quotes around values. For example:
+**Remove redundant quotes around values**. For example:
 
 ```
 json_records("{\"a\": \"abc\"}) // returns [["a", "abc"]]
@@ -139,7 +140,12 @@ This makes the output less awkward, but removes the type information in certain 
 case it is not possible to derive whether `1` is a string or a number:
 
 ```
-json_records("{\"a\": \"1\"}) // returns [["a", "1"]]
+json_records("{\"a\": \"1\"}) // returns [Struct{json_key="a", json_value="1"}]
+```
+
+**Return array of arrays rather than an array of structs**. For example:
+```
+json_records("{\"a\": \"abc\"}) // returns [["a", "abc"]]
 ```
 
 ### json_concat

@@ -96,7 +96,7 @@ top-level keys. Returns `NULL` if the string can't be interpreted as a JSON obje
 #### Examples
 
 ```
-json_keys("{\"a\": \"abc\", \"b\": { \"c\": \"a\" }, \"d\": 1}") // returns ["a", "b", "c"]
+json_keys("{\"a\": \"abc\", \"b\": { \"c\": \"a\" }, \"d\": 1}") // returns ["a", "b", "d"]
 json_keys("{}") // returns []
 json_keys("[]") // returns NULL
 json_keys("") // returns NULL

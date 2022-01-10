@@ -148,6 +148,9 @@ json_records("{\"a\": \"1\"}) // returns [Struct{json_key="a", json_value="1"}]
 json_records("{\"a\": \"abc\"}) // returns [["a", "abc"]]
 ```
 
+A struct is a better return type in this case as it enables meaningful field names and reduces
+the number of potential sanity checks on the end-user side (e.g., array length).
+
 ### json_concat
 
 ```

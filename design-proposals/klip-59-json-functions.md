@@ -39,10 +39,10 @@ Today, ksqlDB can:
 Users can use ksqlDB’s varchar type on columns that they know are JSON formatted. A JSON-formatted
 string can also be nested within a map or struct.
 
-### is_json
+### is_json_string
 
 ```
-is_json(json_string) -> Boolean
+is_json_string(json_string) -> Boolean
 ```
 
 Given a string, returns true if it can be parsed as a valid JSON value, false otherwise.
@@ -50,14 +50,14 @@ Given a string, returns true if it can be parsed as a valid JSON value, false ot
 #### Examples
 
 ```
-is_json("[1, 2, 3]") // returns true
-is_json("{}") // returns true
-is_json("1") // returns true
-is_json("\"abc\"") // returns true
-is_json("null") // returns true
-is_json("") // returns false
-is_json("abc") // returns false
-is_json(NULL) // returns false
+is_json_string("[1, 2, 3]") // returns true
+is_json_string("{}") // returns true
+is_json_string("1") // returns true
+is_json_string("\"abc\"") // returns true
+is_json_string("null") // returns true
+is_json_string("") // returns false
+is_json_string("abc") // returns false
+is_json_string(NULL) // returns false
 ```
 
 

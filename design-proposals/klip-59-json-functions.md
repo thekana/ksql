@@ -213,15 +213,28 @@ Given any ksqlDB type returns the equivalent JSON string.
 
 #### Examples
 
+**Primitives types**
+
 ```
 to_json_string(1) // returns "1"
 to_json_string(15.3) // returns "15.3"
 to_json_string("abc") // returns "\"abc\""
+to_json_string(true) // returns "true"
+to_json_string(2021-10-11) // DATE type, returns "\"2021-10-11\""
+to_json_string(13:25) // TIME type, returns "\"13:25\""
+to_json_string(2021-06-31T12:18:39.446) // TIMESTAMP type, returns "\"2021-06-31T12:18:39.446\""
+to_json_string(NULL) // returns "null"
+```
+
+**Compound types**
+```
 to_json_string(Array[1, 2, 3]) // returns "[1, 2, 3]"
 to_json_string(Struct{id=1,name=A}) // returns "{\"id\": 1, \"name\": \"a\"}"
 to_json_string(Map('c' := 2, 'd' := 4)) // returns "{\"c\": 2, \"d\": \"4\"}"
-to_json_string(NULL) // returns "null"
+to_json_string(Array[Struct{json_key=1 json_value=Map('c' := 2, 'd' := true)}]) // returns "[{\"json_key\": 1, \"json_value\": {\"c\": 2, \"d\": true}}]"
 ```
+
+Custom types are processed in the same way as the types they alias.
 
 #### Rejected alternatives
 

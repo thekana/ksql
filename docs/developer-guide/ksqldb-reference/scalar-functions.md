@@ -491,6 +491,23 @@ Given a `STRING` containing a JSON array, checks if a search value is contained 
 
 Returns `false` if the first parameter does not contain a JSON array.
 
+### `IS_JSON_STRING`
+
+Since: 0.25.0
+
+```sql
+is_json_string("[1, 2, 3]") => true
+is_json_string("{}") => true
+is_json_string("1") => true
+is_json_string("\"abc\"") => true
+is_json_string("null") => true
+is_json_string("") => false
+is_json_string("abc") => false
+is_json_string(NULL) => false
+```
+
+Given a string, returns `true` if it can be parsed as a valid JSON value, `false` otherwise.
+
 ### `MAP`
 
 Since: 0.7.0
